@@ -1,24 +1,13 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Create User CSV Data
 
-Things you may want to cover:
+```
+$ bundle exec rails create_big_user_csv_data
+```
 
-* Ruby version
+## Load CSV Data
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+$ mysql -u root --local-infile -e "LOAD DATA LOCAL INFILE './db/user_seed.csv' INTO TABLE rdm_development.users FIELDS TERMINATED BY ',' (email, encrypted_password, created_at, updated_at)"
+```
