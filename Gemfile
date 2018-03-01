@@ -52,3 +52,4 @@ end
 
 gem 'devise'
 gem 'faker'
+gem 'benchmark-ips'
