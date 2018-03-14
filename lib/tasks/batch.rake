@@ -1,0 +1,2 @@
+namespace :batch do
+end
