@@ -15,5 +15,5 @@ $ mysql -u root --local-infile -e "LOAD DATA LOCAL INFILE './db/user_seed.csv' I
 ## Reset User DATA
 
 ```
-$ mysql -u root -e "truncate table rdm_development.users"
+$ bundle exec rails db:migrate:reset
 ```
