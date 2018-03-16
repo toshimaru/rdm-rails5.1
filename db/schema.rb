@@ -13,9 +13,10 @@
 ActiveRecord::Schema.define(version: 20180314054939) do
 
   create_table "posts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "user_id"
+    t.bigint "user_id", null: false
     t.string "title"
     t.text "content"
+    t.integer "favorite_count", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
@@ -27,6 +28,7 @@ ActiveRecord::Schema.define(version: 20180314054939) do
     t.integer "point", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "posts", "users"

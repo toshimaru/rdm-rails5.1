@@ -6,6 +6,8 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.integer :point, null: false, default: 0
 
       t.timestamps
+
+      t.index :email, unique: true
     end
   end
 end
