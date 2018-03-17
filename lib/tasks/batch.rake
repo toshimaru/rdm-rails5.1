@@ -13,6 +13,19 @@ namespace :batch do
     end
   end
 
+  desc "original1 improvement 1"
+  task original1_improved1: :environment do
+    print_memory_usage do
+      print_time_spent do
+        User.where("created_at >= ?", Date.new(2017))
+            .find_each do |user|
+          user.point += 100
+          user.save
+        end
+      end
+    end
+  end
+
   desc "Aggregate"
   task original2: :environment do
   end
