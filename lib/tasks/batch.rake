@@ -38,6 +38,23 @@ namespace :batch do
 
   desc "Aggregate"
   task original2: :environment do
+    print_memory_usage do
+      print_time_spent do
+        user_like_counts = []
+        User.all.each do |user|
+          user_like_counts << { 
+            name: user.name,
+            total_like_count: user.posts.sum(&:like_count)
+          }
+        end
+        user_like_counts
+          .sort_by! { |u| u[:total_like_count] }
+          .reverse!
+          .take(100).each do |u|
+            puts "#{u[:name]}(#{u[:total_like_count]})"
+          end
+      end
+    end
   end
 
   def print_memory_usage
