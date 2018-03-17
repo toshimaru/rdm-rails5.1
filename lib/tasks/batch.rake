@@ -57,6 +57,35 @@ namespace :batch do
     end
   end
 
+  desc "Aggregate"
+  task original2_improved1: :environment do
+    print_memory_usage do
+      print_time_spent do
+        Post.group(:user_id)
+            .select("user_id, SUM(like_count) AS like_count")
+            .order("like_count DESC")
+            .limit(100).each do |post|
+          puts "#{post.user.name}(#{post.like_count})"
+        end
+      end
+    end
+  end
+
+  desc "Aggregate"
+  task original2_improved2: :environment do
+    print_memory_usage do
+      print_time_spent do
+        Post.includes(:user)
+            .group(:user_id)
+            .select("user_id, SUM(like_count) AS like_count")
+            .order("like_count DESC")
+            .limit(100).each do |post|
+          puts "#{post.user.name}(#{post.like_count})"
+        end
+      end
+    end
+  end
+
   def print_memory_usage
     memory_before = `ps -o rss= -p #{Process.pid}`.to_i
     yield
