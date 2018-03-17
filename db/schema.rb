@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20180314054939) do
     t.bigint "user_id", null: false
     t.string "title"
     t.text "content"
-    t.integer "favorite_count", default: 0, null: false
+    t.integer "like_count", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
