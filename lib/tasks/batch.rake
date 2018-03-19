@@ -36,7 +36,7 @@ namespace :batch do
     end
   end
 
-  desc "Ruby Aggregation Code"
+  desc "List TOP100 users with like_counts"
   task original2: :environment do
     print_memory_usage do
       print_time_spent do
@@ -82,6 +82,22 @@ namespace :batch do
             .limit(100).each do |post|
           puts "#{post.user.name}(#{post.like_count})"
         end
+      end
+    end
+  end
+
+  desc "List Top500 user IDs"
+  task original3: :environment do
+    print_memory_usage do
+      print_time_spent do
+        user_ids = Post.includes(:user)
+            .group(:user_id)
+            .select("user_id, SUM(like_count) AS like_count")
+            .order("like_count DESC")
+            .limit(500).map do |post|
+          post.user.id
+        end
+        p user_ids
       end
     end
   end

@@ -60,3 +60,6 @@ jobs:
             rails batch:original2_improved1
             echo; echo "== batch:original2 improvement 2 =="
             rails batch:original2_improved2
+
+            echo; echo; echo "== batch:original3 =="
+            rails batch:original3
