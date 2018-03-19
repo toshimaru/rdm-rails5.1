@@ -22,3 +22,4 @@ development:
 test:
   <<: *default
   database: rdm_test
+  host: <%= ENV['DB_HOST'] || '127.0.0.1' %>
