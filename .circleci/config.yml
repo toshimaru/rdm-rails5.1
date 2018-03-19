@@ -37,22 +37,14 @@ jobs:
       - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load
 
+      - run:
+          name: Load CSV data into MySQL tables(users & posts)
+          command: |
+            mysql -u root --local-infile -e "LOAD DATA LOCAL INFILE './db/user_seed.csv' INTO TABLE rdm_development.users FIELDS TERMINATED BY ',' (email, name, point, created_at, updated_at)"
+            mysql -u root --local-infile -e "LOAD DATA LOCAL INFILE './db/post_seed.csv' INTO TABLE rdm_development.posts FIELDS TERMINATED BY ',' (user_id, title, content, like_count, created_at, updated_at)"
+
       # run tests!
       - run:
           name: run tests
           command: |
-            mkdir /tmp/test-results
-            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
-            
-            bundle exec rspec --format progress \
-                            --format RspecJunitFormatter \
-                            --out /tmp/test-results/rspec.xml \
-                            --format progress \
-                            $TEST_FILES
-
-      # collect reports
-      - store_test_results:
-          path: /tmp/test-results
-      - store_artifacts:
-          path: /tmp/test-results
-          destination: test-results
+            echo "TODO: add scripts"
