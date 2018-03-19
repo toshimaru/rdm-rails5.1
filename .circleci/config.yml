@@ -48,18 +48,20 @@ jobs:
           name: Run Benchmark
           command: |
             echo "== batch:original1 =="
-            rails batch:original1
+            bundle exec rails batch:original1
             echo; echo "== batch:original1 improvement 1 =="
-            rails batch:original1_improved1
+            bundle exec rails batch:original1_improved1
             echo; echo "== batch:original1 improvement 2 =="
-            rails batch:original1_improved2
+            bundle exec rails batch:original1_improved2
 
             echo; echo; echo "== batch:original2 =="
-            rails batch:original2
+            bundle exec rails batch:original2
             echo; echo "== batch:original2 improvement 1 =="
-            rails batch:original2_improved1
+            bundle exec rails batch:original2_improved1
             echo; echo "== batch:original2 improvement 2 =="
-            rails batch:original2_improved2
+            bundle exec rails batch:original2_improved2
 
             echo; echo; echo "== batch:original3 =="
-            rails batch:original3
+            bundle exec rails batch:original3
+            echo; echo "== batch:original3 improvement 1 =="
+            bundle exec rails batch:original3_improved1
