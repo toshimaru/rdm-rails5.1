@@ -103,7 +103,6 @@ namespace :batch do
     end
   end
 
-
   desc "original3 improvement 1"
   task original3_improved1: :environment do
     print_memory_usage do
@@ -113,6 +112,20 @@ namespace :batch do
               .select("user_id, SUM(like_count) AS like_count")
               .order("like_count DESC")
               .limit(500).map(&:user_id)
+        p user_ids
+      end
+    end
+  end
+
+  desc "original3 improvement 2"
+  task original3_improved2: :environment do
+    print_memory_usage do
+      print_time_spent do
+        user_ids = 
+          Post.group(:user_id)
+              .order("SUM(like_count) DESC")
+              .limit(500)
+              .pluck(:user_id)
         p user_ids
       end
     end
