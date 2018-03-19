@@ -86,7 +86,7 @@ namespace :batch do
     end
   end
 
-  desc "List Top1000 user IDs"
+  desc "List Top2000 user IDs"
   task original3: :environment do
     print_memory_usage do
       print_time_spent do
@@ -95,7 +95,7 @@ namespace :batch do
               .group(:user_id)
               .select("user_id, SUM(like_count) AS like_count")
               .order("like_count DESC")
-              .limit(1000).map do |post|
+              .limit(2000).map do |post|
           post.user.id
         end
         p user_ids
@@ -111,7 +111,7 @@ namespace :batch do
           Post.group(:user_id)
               .select("user_id, SUM(like_count) AS like_count")
               .order("like_count DESC")
-              .limit(1000).map(&:user_id)
+              .limit(2000).map(&:user_id)
         p user_ids
       end
     end
@@ -124,7 +124,7 @@ namespace :batch do
         user_ids = 
           Post.group(:user_id)
               .order("SUM(like_count) DESC")
-              .limit(1000)
+              .limit(2000)
               .pluck(:user_id)
         p user_ids
       end
