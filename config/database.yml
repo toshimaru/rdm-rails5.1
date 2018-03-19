@@ -7,6 +7,7 @@
 default: &default
   adapter: mysql2
   encoding: utf8
+  host: <%= ENV['DB_HOST'] || '127.0.0.1' %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
   password:
@@ -22,4 +23,3 @@ development:
 test:
   <<: *default
   database: rdm_test
-  host: <%= ENV['DB_HOST'] || '127.0.0.1' %>
