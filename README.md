@@ -1,4 +1,4 @@
-# README
+# README [![CircleCI](https://circleci.com/gh/toshimaru/rdm-rails5.1.svg?style=svg)](https://circleci.com/gh/toshimaru/rdm-rails5.1)
 
 ## Create User CSV Data
 
