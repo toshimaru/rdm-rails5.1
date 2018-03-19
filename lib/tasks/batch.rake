@@ -90,13 +90,29 @@ namespace :batch do
   task original3: :environment do
     print_memory_usage do
       print_time_spent do
-        user_ids = Post.includes(:user)
-            .group(:user_id)
-            .select("user_id, SUM(like_count) AS like_count")
-            .order("like_count DESC")
-            .limit(500).map do |post|
+        user_ids = 
+          Post.includes(:user)
+              .group(:user_id)
+              .select("user_id, SUM(like_count) AS like_count")
+              .order("like_count DESC")
+              .limit(500).map do |post|
           post.user.id
         end
+        p user_ids
+      end
+    end
+  end
+
+
+  desc "original3 improvement 1"
+  task original3_improved1: :environment do
+    print_memory_usage do
+      print_time_spent do
+        user_ids = 
+          Post.group(:user_id)
+              .select("user_id, SUM(like_count) AS like_count")
+              .order("like_count DESC")
+              .limit(500).map(&:user_id)
         p user_ids
       end
     end
@@ -118,3 +134,5 @@ namespace :batch do
     puts "Time: #{time.round(2)} secs"
   end
 end
+
+# User.joins(:posts).select("users.*, COUNT(posts.id) AS total_posts").group(:user_id).having("total_posts >= 10")
