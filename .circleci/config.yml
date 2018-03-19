@@ -47,9 +47,16 @@ jobs:
       - run:
           name: Run Benchmarks
           command: |
+            echo "== batch:original1 =="
             rails batch:original1
+            echo "\n== batch:original1 improvement 1 =="
             rails batch:original1_improved1
+            echo "\n== batch:original1 improvement 2 =="
             rails batch:original1_improved2
+
+            echo "== batch:original2 =="
             rails batch:original2
+            echo "\n== batch:original2 improvement 1 =="
             rails batch:original2_improved1
+            echo "\n== batch:original2 improvement 2 =="
             rails batch:original2_improved2
