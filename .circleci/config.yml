@@ -47,4 +47,9 @@ jobs:
       - run:
           name: Run Benchmarks
           command: |
-            bundle exec rails batch:original1
+            rails batch:original1
+            rails batch:original1_improved1
+            rails batch:original1_improved2
+            rails batch:original2
+            rails batch:original2_improved1
+            rails batch:original2_improved2
