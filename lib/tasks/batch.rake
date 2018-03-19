@@ -36,7 +36,7 @@ namespace :batch do
     end
   end
 
-  desc "Aggregate"
+  desc "Ruby Aggregation Code"
   task original2: :environment do
     print_memory_usage do
       print_time_spent do
@@ -57,7 +57,7 @@ namespace :batch do
     end
   end
 
-  desc "Aggregate"
+  desc "original2 improvement 1"
   task original2_improved1: :environment do
     print_memory_usage do
       print_time_spent do
@@ -71,7 +71,7 @@ namespace :batch do
     end
   end
 
-  desc "Aggregate"
+  desc "original2 improvement 2"
   task original2_improved2: :environment do
     print_memory_usage do
       print_time_spent do
