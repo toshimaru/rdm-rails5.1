@@ -65,3 +65,5 @@ jobs:
             bundle exec rails batch:original3
             echo; echo "== batch:original3 improvement 1 =="
             bundle exec rails batch:original3_improved1
+            echo; echo "== batch:original3 improvement 2 =="
+            bundle exec rails batch:original3_improved2
